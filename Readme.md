@@ -1,3 +1,5 @@
+<img width="1200" alt="ter" src="https://github.com/user-attachments/assets/fd2a6273-a897-41a8-895d-be90c8ea787f">
+
 # FutureVerb 🎵
 
 FutureVerb is a free and open-source digital reverb audio plug-in that brings professional-quality spatial effects to your audio productions.
