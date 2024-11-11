@@ -1,4 +1,4 @@
-<img width="1200" alt="ter" src="https://github.com/user-attachments/assets/fd2a6273-a897-41a8-895d-be90c8ea787f">
+<img width="1200" alt="ter" src="https://github.com/user-attachments/assets/4df52c02-d582-44af-9901-7b768ac97fdc">
 
 # FutureVerb 🎵
 
