@@ -7,22 +7,25 @@ HeaderBar::HeaderBar(juce::AudioProcessorValueTreeState& apvts)
     setSize(800, 40);
     initializeComponents();
 
-    // Start listening to parameter changes
     valueTreeState.addParameterListener("type", this);
+    valueTreeState.addParameterListener("irmode", this);
 }
 
 HeaderBar::~HeaderBar()
 {
     valueTreeState.removeParameterListener("type", this);
+    valueTreeState.removeParameterListener("irmode", this);
 
-    // Clean up buttons
     logoButton = nullptr;
     roomButton = nullptr;
     plateButton = nullptr;
     hallButton = nullptr;
     chamberButton = nullptr;
     springButton = nullptr;
+    irModeButton = nullptr;
+    irCustomButton = nullptr;
     menuButton = nullptr;
+    versionLabel = nullptr;
 }
 
 void HeaderBar::setupSVGButton(std::unique_ptr<juce::DrawableButton>& button,
@@ -47,38 +50,27 @@ void HeaderBar::setupSVGButton(std::unique_ptr<juce::DrawableButton>& button,
         addAndMakeVisible(button.get());
 
         if (name == "Logo")
-        {
-            button->onClick = [this]() {
-                if (onLogoClicked) onLogoClicked();
-                };
-        }
+            button->onClick = [this]() { if (onLogoClicked) onLogoClicked(); };
         else if (name == "Menu")
-        {
-            button->onClick = [this]() {
-                if (onMenuClicked) onMenuClicked();
-                };
-        }
+            button->onClick = [this]() { if (onMenuClicked) onMenuClicked(); };
     }
 }
 
 void HeaderBar::initializeComponents()
 {
-    // Setup Logo SVG
     setupSVGButton(logoButton, logoDrawable,
         BinaryData::logonewx_svg,
         BinaryData::logonewx_svgSize,
         "Logo");
 
-    // Initialize reverb buttons
     initializeReverbButtons();
+    initializeIRButtons();
 
-    // Setup Menu SVG
     setupSVGButton(menuButton, menuDrawable,
         BinaryData::menu_svg,
         BinaryData::menu_svgSize,
         "Menu");
 
-    // Version label
     versionLabel = std::make_unique<juce::Label>("version", "v2024.12.15");
     if (versionLabel != nullptr)
     {
@@ -95,32 +87,69 @@ void HeaderBar::initializeReverbButtons()
         const void* svgData,
         size_t svgDataSize,
         const juce::String& name)
+    {
+        drawable = juce::Drawable::createFromImageData(svgData, svgDataSize);
+
+        button = std::make_unique<ReverbButton>(name, drawable.get());
+        if (button != nullptr)
         {
-            drawable = juce::Drawable::createFromImageData(svgData, svgDataSize);
+            button->setRadioGroupId(1);
+            button->onClick = [this, name]() { handleReverbTypeClick(name); };
+            button->setMouseCursor(juce::MouseCursor::PointingHandCursor);
+            addAndMakeVisible(button.get());
+        }
+    };
 
-            button = std::make_unique<ReverbButton>(name, drawable.get());
-            if (button != nullptr)
-            {
-                button->setRadioGroupId(1);
-                button->onClick = [this, name]() { handleReverbTypeClick(name); };
-                button->setMouseCursor(juce::MouseCursor::PointingHandCursor);
-                addAndMakeVisible(button.get());
-            }
-        };
-
-    // Create buttons with their respective SVGs
     createButton(roomButton, roomDrawable, BinaryData::room_svg, BinaryData::room_svgSize, "ROOM");
     createButton(plateButton, plateDrawable, BinaryData::plate_svg, BinaryData::plate_svgSize, "PLATE");
     createButton(hallButton, hallDrawable, BinaryData::hall_svg, BinaryData::hall_svgSize, "HALL");
     createButton(chamberButton, chamberDrawable, BinaryData::chamber_svg, BinaryData::chamber_svgSize, "CHAMBER");
     createButton(springButton, springDrawable, BinaryData::spring_svg, BinaryData::spring_svgSize, "SPRING");
 
-    // Set initial state based on parameter value
     if (auto* param = valueTreeState.getParameter("type"))
     {
         const juce::StringArray types = { "ROOM", "PLATE", "HALL", "CHAMBER", "SPRING" };
         int index = static_cast<int>(param->getValue() * (types.size() - 1));
         updateButtonStates(types[index]);
+    }
+}
+
+void HeaderBar::initializeIRButtons()
+{
+    auto createIRButton = [this](std::unique_ptr<ReverbButton>& button,
+        std::unique_ptr<juce::Drawable>& drawable,
+        const void* svgData,
+        size_t svgDataSize,
+        const juce::String& name)
+    {
+        drawable = juce::Drawable::createFromImageData(svgData, svgDataSize);
+
+        button = std::make_unique<ReverbButton>(name, drawable.get());
+        if (button != nullptr)
+        {
+            button->setRadioGroupId(2);
+            button->onClick = [this, name]() { handleIRModeClick(name); };
+            button->setMouseCursor(juce::MouseCursor::PointingHandCursor);
+            addAndMakeVisible(button.get());
+
+            if (name == "CUSTOM IR")
+            {
+                button->onClick = [this]() {
+                    handleIRModeClick("CUSTOM IR");
+                    if (onCustomIRClicked) onCustomIRClicked();
+                };
+            }
+        }
+    };
+
+    createIRButton(irModeButton, irModeDrawable,
+        BinaryData::irwave_svg, BinaryData::irwave_svgSize, "IR MODE");
+    createIRButton(irCustomButton, irCustomDrawable,
+        BinaryData::ircustom_svg, BinaryData::ircustom_svgSize, "CUSTOM IR");
+
+    if (auto* param = valueTreeState.getParameter("irmode"))
+    {
+        updateIRModeStates(param->getValue() > 0.5f);
     }
 }
 
@@ -135,6 +164,15 @@ void HeaderBar::handleReverbTypeClick(const juce::String& type)
     }
 }
 
+void HeaderBar::handleIRModeClick(const juce::String& mode)
+{
+    if (auto* param = valueTreeState.getParameter("irmode"))
+    {
+        bool isCustom = (mode == "CUSTOM IR");
+        param->setValueNotifyingHost(isCustom ? 1.0f : 0.0f);
+    }
+}
+
 void HeaderBar::parameterChanged(const juce::String& parameterID, float newValue)
 {
     if (parameterID == "type")
@@ -145,8 +183,14 @@ void HeaderBar::parameterChanged(const juce::String& parameterID, float newValue
         {
             juce::MessageManager::callAsync([this, type = types[index]]() {
                 updateButtonStates(type);
-                });
+            });
         }
+    }
+    else if (parameterID == "irmode")
+    {
+        juce::MessageManager::callAsync([this, isCustom = (newValue > 0.5f)]() {
+            updateIRModeStates(isCustom);
+        });
     }
 }
 
@@ -159,6 +203,12 @@ void HeaderBar::updateButtonStates(const juce::String& type)
     if (springButton) springButton->setToggleState(type == "SPRING", juce::dontSendNotification);
 }
 
+void HeaderBar::updateIRModeStates(bool isCustomMode)
+{
+    if (irModeButton) irModeButton->setToggleState(!isCustomMode, juce::dontSendNotification);
+    if (irCustomButton) irCustomButton->setToggleState(isCustomMode, juce::dontSendNotification);
+}
+
 void HeaderBar::resized()
 {
     auto bounds = getLocalBounds();
@@ -167,29 +217,53 @@ void HeaderBar::resized()
 
     const int logoWidth = 108;
     const int menuWidth = 22;
-    const int versionWidth = 120;
+    const int versionWidth = 80;
     const int horizontalSpacing = 8;
     const int buttonSpacing = 4;
     const int verticalMargin = 0;
     const int reverbGroupWidth = 450;
+    const int irButtonWidth = 90;
 
-    // Logo section
+    // Logo
     if (logoButton != nullptr)
     {
         logoButton->setBounds(horizontalSpacing, 0, logoWidth, bounds.getHeight());
     }
 
-    // Right-side controls
+    // Right-side controls (from right to left)
+    int rightX = bounds.getWidth() - horizontalSpacing;
+
+    // Menu button
     if (menuButton != nullptr)
     {
-        menuButton->setBounds(bounds.getWidth() - menuWidth - horizontalSpacing,
-            0, menuWidth, bounds.getHeight());
+        rightX -= menuWidth;
+        menuButton->setBounds(rightX, 0, menuWidth, bounds.getHeight());
+        rightX -= horizontalSpacing;
     }
 
+    // Version label
     if (versionLabel != nullptr)
     {
-        versionLabel->setBounds(bounds.getWidth() - menuWidth - versionWidth - horizontalSpacing * 2,
-            0, versionWidth, bounds.getHeight());
+        rightX -= versionWidth;
+        versionLabel->setBounds(rightX, 0, versionWidth, bounds.getHeight());
+        rightX -= horizontalSpacing;
+    }
+
+    // IR Custom button
+    if (irCustomButton != nullptr)
+    {
+        rightX -= irButtonWidth;
+        irCustomButton->setBounds(rightX, verticalMargin,
+            irButtonWidth, bounds.getHeight() - verticalMargin * 2);
+        rightX -= buttonSpacing;
+    }
+
+    // IR Mode button
+    if (irModeButton != nullptr)
+    {
+        rightX -= irButtonWidth;
+        irModeButton->setBounds(rightX, verticalMargin,
+            irButtonWidth, bounds.getHeight() - verticalMargin * 2);
     }
 
     // Calculate reverb buttons area

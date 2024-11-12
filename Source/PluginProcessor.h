@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "Core/ReverbProcessor.h"
 
 class FutureVerb2AudioProcessor : public juce::AudioProcessor,

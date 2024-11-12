@@ -1,6 +1,6 @@
 // ContentArea.h
 #pragma once
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "../JuceHeader.h"
 #include "VuMeter.h"
 #include "../CustomLookAndFeel.h"
 

@@ -1,6 +1,6 @@
 // FutureVerb2/Source/Core/ReverbProcessor.h
 #pragma once
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "../JuceHeader.h"
 #include <map>
 
 class ReverbProcessor

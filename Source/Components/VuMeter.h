@@ -1,6 +1,6 @@
 // VuMeter.h
 #pragma once
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "../JuceHeader.h"
 
 class VuMeter : public juce::Component,
     private juce::Timer

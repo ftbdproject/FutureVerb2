@@ -1,6 +1,6 @@
 // HeaderBar.h
 #pragma once
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "../JuceHeader.h"
 
 class ReverbButton : public juce::Button
 {
@@ -15,24 +15,19 @@ public:
     {
         auto bounds = getLocalBounds();
 
-        // Get text width
         g.setFont(12.0f);
         const float textWidth = g.getCurrentFont().getStringWidth(getButtonText());
 
-        // Calculate total content width (icon + spacing + text)
-        const float iconSize = 16.0f;  // Fixed icon size
-        const float spacing = 6.0f;    // Space between icon and text
+        const float iconSize = 16.0f;
+        const float spacing = 6.0f;
         const float totalWidth = iconSize + spacing + textWidth;
 
-        // Center the combined content
         float startX = (bounds.getWidth() - totalWidth) * 0.5f;
 
-        // Get color based on state
         juce::Colour colour = isEnabled() ?
             (getToggleState() ? juce::Colours::white : juce::Colours::grey.withAlpha(0.5f))
             : juce::Colours::grey.withAlpha(0.3f);
 
-        // Draw icon
         if (icon != nullptr)
         {
             icon->setColour(0, colour);
@@ -42,14 +37,12 @@ public:
                 juce::RectanglePlacement::centred, 1.0f);
         }
 
-        // Draw text
         g.setColour(colour);
         g.drawText(getButtonText(),
             juce::Rectangle<float>(startX + iconSize + spacing, 0,
                 textWidth, bounds.getHeight()),
             juce::Justification::centredLeft, true);
 
-        // Optional: Draw hover/pressed state
         if (shouldDrawButtonAsHighlighted || shouldDrawButtonAsDown)
         {
             g.setColour(juce::Colours::white.withAlpha(0.1f));
@@ -74,6 +67,7 @@ public:
 
     std::function<void()> onMenuClicked;
     std::function<void()> onLogoClicked;
+    std::function<void()> onCustomIRClicked;
 
 private:
     juce::AudioProcessorValueTreeState& valueTreeState;
@@ -86,6 +80,8 @@ private:
     std::unique_ptr<juce::Drawable> hallDrawable;
     std::unique_ptr<juce::Drawable> chamberDrawable;
     std::unique_ptr<juce::Drawable> springDrawable;
+    std::unique_ptr<juce::Drawable> irModeDrawable;
+    std::unique_ptr<juce::Drawable> irCustomDrawable;
 
     // Buttons
     std::unique_ptr<juce::DrawableButton> logoButton;
@@ -94,11 +90,15 @@ private:
     std::unique_ptr<ReverbButton> hallButton;
     std::unique_ptr<ReverbButton> chamberButton;
     std::unique_ptr<ReverbButton> springButton;
+    std::unique_ptr<ReverbButton> irModeButton;
+    std::unique_ptr<ReverbButton> irCustomButton;
     std::unique_ptr<juce::DrawableButton> menuButton;
     std::unique_ptr<juce::Label> versionLabel;
 
     void initializeComponents();
     void initializeReverbButtons();
+    void initializeIRButtons();
+
     void setupSVGButton(std::unique_ptr<juce::DrawableButton>& button,
         std::unique_ptr<juce::Drawable>& drawable,
         const void* svgData,
@@ -106,8 +106,10 @@ private:
         const juce::String& name);
 
     void handleReverbTypeClick(const juce::String& type);
+    void handleIRModeClick(const juce::String& mode);
     void parameterChanged(const juce::String& parameterID, float newValue) override;
     void updateButtonStates(const juce::String& type);
+    void updateIRModeStates(bool isCustomMode);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(HeaderBar)
 };

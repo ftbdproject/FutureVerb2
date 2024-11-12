@@ -1,7 +1,7 @@
 // PluginEditor.h
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "PluginProcessor.h"
 #include "CustomLookAndFeel.h"
 #include "Components/HeaderBar.h"

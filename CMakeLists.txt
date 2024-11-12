@@ -78,6 +78,8 @@ juce_add_binary_data(FutureVerb2_Resources
         Source/Assets/knob.png
         Source/Assets/logo.svg
         Source/Assets/menu.svg
+        Source/Assets/irwave.svg
+        Source/Assets/customir.svg
 )
 
 # Link to JUCE modules
