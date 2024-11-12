@@ -7,80 +7,80 @@
   <MAINGROUP id="YohVRv" name="FutureVerb2">
     <GROUP id="{5BBF34B0-E309-FB51-BC2D-E08DAC09703D}" name="Source">
       <GROUP id="{0F0684AC-1EBC-4432-784C-C9EA2CDB8452}" name="Core">
-        <FILE id="Nbjau2" name="Preset.h" compile="0" resource="0" file="Source/Core/Preset.h"/>
+        <FILE id="Nbjau2" name="Preset.h" compile="0" resource="0" file="../Source/Core/Preset.h"/>
         <FILE id="LefUcj" name="ReverbProcessor.cpp" compile="1" resource="0"
-              file="Source/Core/ReverbProcessor.cpp"/>
+              file="../Source/Core/ReverbProcessor.cpp"/>
         <FILE id="vW2NIH" name="ReverbProcessor.h" compile="0" resource="0"
-              file="Source/Core/ReverbProcessor.h"/>
+              file="../Source/Core/ReverbProcessor.h"/>
       </GROUP>
       <FILE id="E6NQuG" name="CustomLookAndFeel.h" compile="0" resource="0"
-            file="Source/CustomLookAndFeel.h"/>
+            file="../Source/CustomLookAndFeel.h"/>
       <GROUP id="{4CCB074D-9A37-18A2-ACD0-F4E0FE97DDF9}" name="Components">
-        <FILE id="nUSPJc" name="ContentArea.cpp" compile="1" resource="0" file="Source/Components/ContentArea.cpp"/>
-        <FILE id="NFJo35" name="ContentArea.h" compile="0" resource="0" file="Source/Components/ContentArea.h"/>
-        <FILE id="ceSrs8" name="HeaderBar.cpp" compile="1" resource="0" file="Source/Components/HeaderBar.cpp"/>
-        <FILE id="y6EMZ4" name="HeaderBar.h" compile="0" resource="0" file="Source/Components/HeaderBar.h"/>
-        <FILE id="gQbtIM" name="VuMeter.cpp" compile="1" resource="0" file="Source/Components/VuMeter.cpp"/>
-        <FILE id="dUbjeX" name="VuMeter.h" compile="0" resource="0" file="Source/Components/VuMeter.h"/>
+        <FILE id="nUSPJc" name="ContentArea.cpp" compile="1" resource="0" file="../Source/Components/ContentArea.cpp"/>
+        <FILE id="NFJo35" name="ContentArea.h" compile="0" resource="0" file="../Source/Components/ContentArea.h"/>
+        <FILE id="ceSrs8" name="HeaderBar.cpp" compile="1" resource="0" file="../Source/Components/HeaderBar.cpp"/>
+        <FILE id="y6EMZ4" name="HeaderBar.h" compile="0" resource="0" file="../Source/Components/HeaderBar.h"/>
+        <FILE id="gQbtIM" name="VuMeter.cpp" compile="1" resource="0" file="../Source/Components/VuMeter.cpp"/>
+        <FILE id="dUbjeX" name="VuMeter.h" compile="0" resource="0" file="../Source/Components/VuMeter.h"/>
       </GROUP>
       <GROUP id="{8892CFA9-8CD7-EE28-5AF4-FF8308FD4370}" name="Assets">
-        <FILE id="yqgus3" name="interfacex1.png" compile="0" resource="1" file="Source/Assets/interfacex1.png"/>
-        <FILE id="InlNfT" name="interfacex2.png" compile="0" resource="1" file="Source/Assets/interfacex2.png"/>
-        <FILE id="X0yGES" name="midbutton.svg" compile="0" resource="1" file="Source/Assets/midbutton.svg"/>
-        <FILE id="BCqqfj" name="sidebutton.svg" compile="0" resource="1" file="Source/Assets/sidebutton.svg"/>
-        <FILE id="UUR2yr" name="knob2.png" compile="0" resource="1" file="Source/Assets/knob2.png"/>
-        <FILE id="FXzzuk" name="background.png" compile="0" resource="1" file="Source/Assets/background.png"/>
-        <FILE id="uCP7kN" name="background.svg" compile="0" resource="1" file="Source/Assets/background.svg"/>
-        <FILE id="X34iwu" name="logonewx.svg" compile="0" resource="1" file="Source/Assets/logonewx.svg"/>
-        <FILE id="siINFD" name="logonew.svg" compile="0" resource="1" file="Source/Assets/logonew.svg"/>
+        <FILE id="yqgus3" name="interfacex1.png" compile="0" resource="1" file="../Source/Assets/interfacex1.png"/>
+        <FILE id="InlNfT" name="interfacex2.png" compile="0" resource="1" file="../Source/Assets/interfacex2.png"/>
+        <FILE id="X0yGES" name="midbutton.svg" compile="0" resource="1" file="../Source/Assets/midbutton.svg"/>
+        <FILE id="BCqqfj" name="sidebutton.svg" compile="0" resource="1" file="../Source/Assets/sidebutton.svg"/>
+        <FILE id="UUR2yr" name="knob2.png" compile="0" resource="1" file="../Source/Assets/knob2.png"/>
+        <FILE id="FXzzuk" name="background.png" compile="0" resource="1" file="../Source/Assets/background.png"/>
+        <FILE id="uCP7kN" name="background.svg" compile="0" resource="1" file="../Source/Assets/background.svg"/>
+        <FILE id="X34iwu" name="logonewx.svg" compile="0" resource="1" file="../Source/Assets/logonewx.svg"/>
+        <FILE id="siINFD" name="logonew.svg" compile="0" resource="1" file="../Source/Assets/logonew.svg"/>
         <GROUP id="{6B5E57D7-C62A-69F4-324D-78EB7BBD3EA9}" name="Icons">
-          <FILE id="uzAimB" name="chamber.svg" compile="0" resource="1" file="Source/Assets/Icons/chamber.svg"/>
-          <FILE id="g6giB3" name="hall.svg" compile="0" resource="1" file="Source/Assets/Icons/hall.svg"/>
-          <FILE id="uYgwa0" name="plate.svg" compile="0" resource="1" file="Source/Assets/Icons/plate.svg"/>
-          <FILE id="nzMnXO" name="room.svg" compile="0" resource="1" file="Source/Assets/Icons/room.svg"/>
-          <FILE id="lZiqIJ" name="spring.svg" compile="0" resource="1" file="Source/Assets/Icons/spring.svg"/>
+          <FILE id="uzAimB" name="chamber.svg" compile="0" resource="1" file="../Source/Assets/Icons/chamber.svg"/>
+          <FILE id="g6giB3" name="hall.svg" compile="0" resource="1" file="../Source/Assets/Icons/hall.svg"/>
+          <FILE id="uYgwa0" name="plate.svg" compile="0" resource="1" file="../Source/Assets/Icons/plate.svg"/>
+          <FILE id="nzMnXO" name="room.svg" compile="0" resource="1" file="../Source/Assets/Icons/room.svg"/>
+          <FILE id="lZiqIJ" name="spring.svg" compile="0" resource="1" file="../Source/Assets/Icons/spring.svg"/>
         </GROUP>
         <GROUP id="{3559FB08-3EC2-0C7E-39D6-F66E2A3E688D}" name="Fonts">
           <FILE id="HxhiAP" name="IBMPlexSans-Bold.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Bold.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Bold.ttf"/>
           <FILE id="CMjo4Q" name="IBMPlexSans-BoldItalic.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-BoldItalic.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-BoldItalic.ttf"/>
           <FILE id="kyELGZ" name="IBMPlexSans-ExtraLight.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-ExtraLight.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-ExtraLight.ttf"/>
           <FILE id="IbTfcA" name="IBMPlexSans-ExtraLightItalic.ttf" compile="0"
-                resource="1" file="Source/Assets/Fonts/IBMPlexSans-ExtraLightItalic.ttf"/>
+                resource="1" file="../Source/Assets/Fonts/IBMPlexSans-ExtraLightItalic.ttf"/>
           <FILE id="jcW0Pv" name="IBMPlexSans-Italic.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Italic.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Italic.ttf"/>
           <FILE id="D4I023" name="IBMPlexSans-Light.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Light.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Light.ttf"/>
           <FILE id="XJNRuf" name="IBMPlexSans-LightItalic.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-LightItalic.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-LightItalic.ttf"/>
           <FILE id="SIRlMN" name="IBMPlexSans-Medium.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Medium.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Medium.ttf"/>
           <FILE id="FczS6z" name="IBMPlexSans-MediumItalic.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-MediumItalic.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-MediumItalic.ttf"/>
           <FILE id="EsxN3Y" name="IBMPlexSans-Regular.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Regular.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Regular.ttf"/>
           <FILE id="xjlEnZ" name="IBMPlexSans-SemiBold.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-SemiBold.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-SemiBold.ttf"/>
           <FILE id="Af7PqL" name="IBMPlexSans-SemiBoldItalic.ttf" compile="0"
-                resource="1" file="Source/Assets/Fonts/IBMPlexSans-SemiBoldItalic.ttf"/>
+                resource="1" file="../Source/Assets/Fonts/IBMPlexSans-SemiBoldItalic.ttf"/>
           <FILE id="LPS6jV" name="IBMPlexSans-Thin.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-Thin.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-Thin.ttf"/>
           <FILE id="hSYaHL" name="IBMPlexSans-ThinItalic.ttf" compile="0" resource="1"
-                file="Source/Assets/Fonts/IBMPlexSans-ThinItalic.ttf"/>
+                file="../Source/Assets/Fonts/IBMPlexSans-ThinItalic.ttf"/>
         </GROUP>
-        <FILE id="BvlnxS" name="knob.png" compile="0" resource="1" file="Source/Assets/knob.png"/>
-        <FILE id="Uldkly" name="logo.svg" compile="0" resource="1" file="Source/Assets/logo.svg"/>
-        <FILE id="Z55uOh" name="menu.svg" compile="0" resource="1" file="Source/Assets/menu.svg"/>
+        <FILE id="BvlnxS" name="knob.png" compile="0" resource="1" file="../Source/Assets/knob.png"/>
+        <FILE id="Uldkly" name="logo.svg" compile="0" resource="1" file="../Source/Assets/logo.svg"/>
+        <FILE id="Z55uOh" name="menu.svg" compile="0" resource="1" file="../Source/Assets/menu.svg"/>
       </GROUP>
       <FILE id="y6RFUY" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
+            file="../Source/PluginProcessor.cpp"/>
       <FILE id="T649mB" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
+            file="../Source/PluginProcessor.h"/>
       <FILE id="ntryQQ" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="RHZgX4" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+            file="../Source/PluginEditor.cpp"/>
+      <FILE id="RHZgX4" name="PluginEditor.h" compile="0" resource="0" file="../Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

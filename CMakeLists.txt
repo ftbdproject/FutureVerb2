@@ -7,46 +7,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find and include JUCE
-add_subdirectory(JUCE) # Adjust this path to where JUCE is located in your project
-add_subdirectory(External/stk)
+add_subdirectory(JUCE)
 
-# Initialize JUCE
+# Initialize JUCE plugin with binary resources
 juce_add_plugin(FutureVerb2
-    VERSION "2024.11.11"                            # Set this to your plugin version
-    COMPANY_NAME "Khaoniewji Development"           # Set this to your company name
-    PLUGIN_MANUFACTURER_CODE "Khao"                 # A unique four-character manufacturer id
-    PLUGIN_CODE "Ftrv"                             # A unique four-character plugin id
-    FORMATS VST3                                    # The formats to build. Other options: AU AAX Unity VST
-    PRODUCT_NAME "FutureVerb"                      # The name of your plugin
+    VERSION "2024.11.11"
+    COMPANY_NAME "Khaoniewji Development"
+    PLUGIN_MANUFACTURER_CODE "Khao"
+    PLUGIN_CODE "Ftrv"
+    FORMATS VST3
+    PRODUCT_NAME "FutureVerb"
     COMPANY_WEBSITE "futureboard.app"
     BUNDLE_ID "app.futureboard.ftrvb"
     VST3_CATEGORIES Reverb
-)
-
-# Add source files
-target_sources(FutureVerb2
-    PRIVATE
-        Source/PluginProcessor.cpp
-        Source/PluginEditor.cpp
-        Source/Core/ReverbProcessor.cpp
-        Source/Components/ContentArea.cpp
-        Source/Components/HeaderBar.cpp
-        Source/Components/VuMeter.cpp
-)
-
-# Specify include directories
-target_include_directories(FutureVerb2
-    PRIVATE
-        Source
-        Source/Core
-        Source/Components
-        External/stk/include
-        ${CMAKE_CURRENT_BINARY_DIR}/JuceLibraryCode
-)
-
-# Add binary resources
-juce_add_binary_data(FutureVerb2_Resources
-    SOURCES
+    BINARY_DATA
         Source/Assets/interfacex1.png
         Source/Assets/interfacex2.png
         Source/Assets/midbutton.svg
@@ -82,10 +56,31 @@ juce_add_binary_data(FutureVerb2_Resources
         Source/Assets/customir.svg
 )
 
-# Link to JUCE modules
+# Generate JUCE header
+juce_generate_juce_header(FutureVerb2)
+
+# Add source files
+target_sources(FutureVerb2
+    PRIVATE
+        Source/PluginProcessor.cpp
+        Source/PluginEditor.cpp
+        Source/Core/ReverbProcessor.cpp
+        Source/Components/ContentArea.cpp
+        Source/Components/HeaderBar.cpp
+        Source/Components/VuMeter.cpp
+)
+
+# Specify include directories
+target_include_directories(FutureVerb2
+    PRIVATE
+        Source
+        Source/Core
+        Source/Components
+)
+
+# Link libraries
 target_link_libraries(FutureVerb2
     PRIVATE
-        FutureVerb2_Resources
         juce::juce_animation
         juce::juce_audio_basics
         juce::juce_audio_devices
@@ -102,7 +97,6 @@ target_link_libraries(FutureVerb2
         juce::juce_gui_basics
         juce::juce_gui_extra
         juce::juce_opengl
-        stk
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

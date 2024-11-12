@@ -145,7 +145,7 @@ void HeaderBar::initializeIRButtons()
     createIRButton(irModeButton, irModeDrawable,
         BinaryData::irwave_svg, BinaryData::irwave_svgSize, "IR MODE");
     createIRButton(irCustomButton, irCustomDrawable,
-        BinaryData::ircustom_svg, BinaryData::ircustom_svgSize, "CUSTOM IR");
+        BinaryData::customir_svg, BinaryData::customir_svgSize, "CUSTOM IR");
 
     if (auto* param = valueTreeState.getParameter("irmode"))
     {
