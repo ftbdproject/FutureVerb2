@@ -4,3 +4,6 @@
 [submodule "External/stk"]
 	path = External/stk
 	url = https://github.com/thestk/stk.git
+[submodule "External/kissfft"]
+	path = External/kissfft
+	url = https://github.com/mborgerding/kissfft

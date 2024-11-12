@@ -9,7 +9,7 @@
 */
 
 #pragma once
-#include <JuceHeader.h>
+#include "../../JuceLibraryCode/JuceHeader.h"
 
 struct Preset
 {

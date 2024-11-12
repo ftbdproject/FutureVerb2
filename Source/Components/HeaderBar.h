@@ -1,6 +1,6 @@
 // HeaderBar.h
 #pragma once
-#include <JuceHeader.h>
+#include "../../JuceLibraryCode/JuceHeader.h"
 
 class ReverbButton : public juce::Button
 {

@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find and include JUCE
 add_subdirectory(JUCE) # Adjust this path to where JUCE is located in your project
+add_subdirectory(External/stk)
 
 # Initialize JUCE
 juce_add_plugin(FutureVerb2
@@ -39,6 +40,8 @@ target_include_directories(FutureVerb2
         Source
         Source/Core
         Source/Components
+        External/stk/include
+        ${CMAKE_CURRENT_BINARY_DIR}/JuceLibraryCode
 )
 
 # Add binary resources
@@ -97,8 +100,16 @@ target_link_libraries(FutureVerb2
         juce::juce_gui_basics
         juce::juce_gui_extra
         juce::juce_opengl
+        stk
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags
+)
+
+target_compile_definitions(FutureVerb2
+    PRIVATE
+        $<$<PLATFORM_ID:Windows>:__WINDOWS_DS__>
+        $<$<PLATFORM_ID:Windows>:__LITTLE_ENDIAN__>
+        _USE_MATH_DEFINES
 )
