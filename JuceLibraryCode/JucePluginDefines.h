@@ -155,7 +155,7 @@
  #define JucePlugin_ARAFactoryID           "com.yourcompany.FutureVerb2.factory"
 #endif
 #ifndef  JucePlugin_ARADocumentArchiveID
- #define JucePlugin_ARADocumentArchiveID   "com.yourcompany.FutureVerb2.aradocumentarchive.1.0.0"
+ #define JucePlugin_ARADocumentArchiveID   "com.yourcompany.FutureVerb2.aradocumentarchive.2024.11.11"
 #endif
 #ifndef  JucePlugin_ARACompatibleArchiveIDs
  #define JucePlugin_ARACompatibleArchiveIDs  ""
